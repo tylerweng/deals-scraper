@@ -11,7 +11,7 @@ const setServer = function(callback) {
   // Application-level environment vars
   server.set('env', process.env.NODE_ENV || 'development')
   server.set('host', process.env.HOST || '0.0.0.0')
-  server.set('port', process.env.PORT || 80)
+  server.set('port', process.env.PORT || 3001)
 
   // Application-level middleware
   // server.use(serveFavicon(`${staticPath}/assets/favicon.ico`))
@@ -21,8 +21,10 @@ const setServer = function(callback) {
     console.log(err.stack)
     res.status(500).send('Uncaught server error')
   })
+
+  const port = server.get('port')
+  server.listen(port, console.log("Example app listening on port " + port))
   return server;
-  // return server.listen(server.get('port', () => callback(server)))
 }
 const server = setServer();
 
