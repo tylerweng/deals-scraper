@@ -1,0 +1,22 @@
+{
+  "name": "deals-scraper",
+  "version": "1.0.0",
+  "description": "Web app built using React and Express",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules",
+    "start": "npm run build && node dist/index.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "react": "*",
+    "react-dom": "*",
+    "serve-favicon": "*",
+    "webpack": "*"
+  },
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-preset-env": "*",
+    "rimraf": "*"
+  }
+}
