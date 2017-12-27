@@ -17,6 +17,7 @@
   "devDependencies": {
     "babel-cli": "*",
     "babel-preset-env": "*",
+    "babel-preset-react": "*",
     "rimraf": "*"
   }
 }
