@@ -7,7 +7,7 @@
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules",
     "prod": "npm run build && node dist/index.js",
     "start": "node index.js"
-  },
+},
   "dependencies": {
     "express": "*",
     "react": "*",
@@ -18,6 +18,9 @@
     "babel-preset-env": "*",
     "babel-preset-react": "*",
     "babel-register": "*",
-    "rimraf": "*"
+    "babel-loader": "*",
+    "rimraf": "*",
+    "webpack": "*",
+    "path": "*"
   }
 }
