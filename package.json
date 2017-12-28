@@ -9,18 +9,18 @@
     "start": "node index.js"
 },
   "dependencies": {
-    "express": "*",
-    "react": "*",
-    "react-dom": "*",
-    "serve-favicon": "*",
-    "webpack": "*",
     "babel-cli": "*",
+    "babel-loader": "*",
     "babel-preset-env": "*",
     "babel-preset-react": "*",
     "babel-register": "*",
-    "babel-loader": "*",
+    "express": "*",
+    "path": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-router-dom": "*",
     "rimraf": "*",
-    "webpack": "*",
-    "path": "*"
+    "serve-favicon": "*",
+    "webpack": "*"
   }
 }
