@@ -1,7 +1,8 @@
 import path from 'path'
 import express from 'express'
-import app from './app'
 import serveFavicon from 'serve-favicon'
+
+import routes from './routes'
 
 const staticPath = path.resolve(__dirname, '../static')
 // Initialize express server
@@ -14,7 +15,8 @@ const setServer = function(callback) {
   server.set('port', process.env.PORT || 3001)
 
   // Application-level middleware
-  // server.use(serveFavicon(`${staticPath}/assets/favicon.ico`))
+  server.use('/', routes)
+  server.use(serveFavicon(`${staticPath}/assets/favicon.ico`))
   server.use((err, req, res, next) => {
     console.log('Error on request %s %s', req.method, req.url)
     console.log(err)
@@ -28,5 +30,4 @@ const setServer = function(callback) {
 }
 const server = setServer()
 
-//had to use ES5 b/c of babel-register
-module.exports = server
+export default server
