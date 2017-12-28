@@ -15,7 +15,8 @@ const setServer = function(callback) {
   server.set('port', process.env.PORT || 3001)
 
   // Application-level middleware
-  server.use('/', routes)
+  // Backend routes
+  server.use('/server', routes)
   server.use(serveFavicon(`${staticPath}/assets/favicon.ico`))
   server.use((err, req, res, next) => {
     console.log('Error on request %s %s', req.method, req.url)
