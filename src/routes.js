@@ -2,8 +2,8 @@ import { Router } from 'express'
 
 import birds from './routes/birds'
 
-const routes = Router()
+const router = Router()
 
-routes.use('/birds', birds)
+router.use('/birds', birds)
 
-export default routes
+export default router
