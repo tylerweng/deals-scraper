@@ -5,19 +5,19 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules",
-    "start": "npm run build && node dist/index.js"
+    "prod": "npm run build && node dist/index.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "express": "*",
     "react": "*",
     "react-dom": "*",
     "serve-favicon": "*",
-    "webpack": "*"
-  },
-  "devDependencies": {
+    "webpack": "*",
     "babel-cli": "*",
     "babel-preset-env": "*",
     "babel-preset-react": "*",
+    "babel-register": "*",
     "rimraf": "*"
   }
 }

@@ -26,6 +26,7 @@ const setServer = function(callback) {
   server.listen(port, console.log("Example app listening on port " + port))
   return server;
 }
-const server = setServer();
+const server = setServer()
 
-export default server
+//had to use ES5 b/c of babel-register
+module.exports = server
