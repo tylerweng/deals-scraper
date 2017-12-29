@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-import config from './config.js'
+import config from './config'
 
 // Using mongolab url for now
 const database_url = `mongodb://${config.username}:${config.password}@${config.url}`
