@@ -3,6 +3,7 @@ import express from 'express'
 import serveFavicon from 'serve-favicon'
 
 import routes from './routes'
+import database from './database/database'
 
 const staticPath = path.resolve(__dirname, '../static')
 // Initialize express server
