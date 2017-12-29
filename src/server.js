@@ -3,6 +3,8 @@ import express from 'express'
 import serveFavicon from 'serve-favicon'
 
 import routes from './routes'
+import database from './database/database'
+import scheduler from './services/scheduler'
 
 const staticPath = path.resolve(__dirname, '../static')
 // Initialize express server
@@ -16,7 +18,7 @@ const setServer = function(callback) {
 
   // Application-level middleware
   // Backend routes
-  server.use('/server', routes)
+  server.use('/', routes)
   server.use(serveFavicon(`${staticPath}/assets/favicon.ico`))
   server.use((err, req, res, next) => {
     console.log('Error on request %s %s', req.method, req.url)
