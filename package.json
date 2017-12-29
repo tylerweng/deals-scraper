@@ -4,9 +4,9 @@
   "description": "Web app built using React and Express",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules",
-    "prod": "npm run build && node dist/index.js",
-    "start": "node index.js"
+    "start": "nodemon index.js",
+    "build": "webpack",
+    "webpack": "webpack -w"
 },
   "dependencies": {
     "babel-cli": "*",
@@ -15,12 +15,14 @@
     "babel-preset-react": "*",
     "babel-register": "*",
     "express": "*",
+    "nodemon": "*",
     "path": "*",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "*",
     "rimraf": "*",
     "serve-favicon": "*",
-    "webpack": "*"
+    "webpack": "*",
+    "webpack-dev-server": "*"
   }
 }

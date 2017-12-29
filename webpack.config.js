@@ -1,10 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
+
+var BUILD_DIR = path.resolve('dist')
+var APP_DIR = path.resolve('./react-ui')
 module.exports = {
-    entry: './index_react.js',
+    entry: './react-ui/index_react.js',
     output: {
-        path: path.resolve('dist'),
-        filename: 'index_bundle.js'
+        path: BUILD_DIR,
+        filename: 'bundle.js'
     },
     module: {
         loaders: [
