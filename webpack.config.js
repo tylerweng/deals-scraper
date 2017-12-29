@@ -1,18 +1,31 @@
 var path = require('path')
 var webpack = require('webpack')
+var HTMLWebPackPlugin = require("html-webpack-plugin")
 
 var BUILD_DIR = path.resolve('dist')
 var APP_DIR = path.resolve('./react-ui')
 module.exports = {
-    entry: './react-ui/index_react.js',
+    entry: APP_DIR + '/index_react.js',
     output: {
         path: BUILD_DIR,
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
+    },
+    devServer: {
+        historyApiFallback: true
+    },
+    resolve:{
+        extensions: [".js", ".jsx"]
     },
     module: {
         loaders: [
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
+            { test: /\.html$/, loader: "html-loader"}
         ]
-    }
+    },
+    plugins: [new HTMLWebPackPlugin({
+        template: "./static/index.html",
+        filename: "./index.html"
+    })]
 }

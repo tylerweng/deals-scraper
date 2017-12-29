@@ -24,8 +24,6 @@ const setServer = function(callback) {
     console.log(err.stack)
     res.status(500).send('Uncaught server error')
   })
-
-  server.use('/static', express.static('static'))
   const port = server.get('port')
   server.listen(port, console.log("Example app listening on port " + port))
   
