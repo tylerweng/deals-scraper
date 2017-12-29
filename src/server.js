@@ -4,6 +4,7 @@ import serveFavicon from 'serve-favicon'
 
 import routes from './routes'
 import database from './database/database'
+import scheduler from './services/scheduler'
 
 const staticPath = path.resolve(__dirname, '../static')
 // Initialize express server
