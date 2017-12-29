@@ -1,19 +1,22 @@
-import { MongoClient } from 'mongodb'
+import mongoose from 'mongoose'
 
 import config from './config.js'
-
-let database
 
 // Using mongolab url for now
 const database_url = `mongodb://${config.username}:${config.password}@${config.url}`
 
-MongoClient.connect(database_url, function (err, db) {
+mongoose.connect(database_url, {
+  useMongoClient: true
+}, (err) => {
   if (err) {
-    console.log('Error connecting to %s', database_url)
+    console.log(`Failure to connect to ${config.url} caused by ${err}`)
   } else {
-    console.log('Successfully connected to %s', database_url)
+    console.log(`Sueccessfully connected to ${config.url}`)
   }
-  database = db
 })
+
+mongoose.Promise = global.Promise
+
+const database = mongoose.connection
 
 export default database
