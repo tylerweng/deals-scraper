@@ -5,21 +5,26 @@ import Model from './model'
 
 const url = "https://www.sephora.com/search/saleResults.jsp?keyword=Sale&sale=true&pageSize=-1&currentPage="
 
+let currentPage = 1
+let count = 0
+
 const scrape = () => {
   console.log('SephoraScraper onTick')
-  let currentPage = 1
   request(url + currentPage, (err, res, html) => {
     if (!err) {
       const $ = cheerio.load(html)
-      // console.log(html)
       const searchResult = JSON.parse($("script[id=searchResult]").html())
-      // console.log(searchResult)
       const products = searchResult["products"]
+      if (products.length === 0) {
+        console.log(`Finished scraping! Scraped a total of ${count} items from ${currentPage} pages`)
+        return
+      }
       const timestamp = Date.now()
       products.forEach(product => {
         if (!product["derived_sku"] || !product["derived_sku"]["sale_price"]) {
           return
         }
+        count++
         const product_name = product["display_name"]
         const brand_name = product["brand_name"]
         const product_url = product["product_url"]
@@ -35,10 +40,29 @@ const scrape = () => {
           list_price: list_price,
           timestamp: timestamp
         })
-        model.save()
+
+        // Check if doc exists
+        Model.findOne({
+          "product_name": product_name
+        }, (err, doc) => {
+          // If no doc with product_name exists, save it
+          if (doc == null) {
+            model.save()
+            console.log(`new model obtained: ${model}`)
+          } else if (doc["sale_price" != sale_price || doc["list_price"] != list_price]) {
+            console.log(`doc prior to update: ${doc}`)
+            doc["sale_price"] = sale_price
+            doc["list_price"] = list_price
+            doc["timestamp"] = timestamp
+            doc.save()
+            console.log(`doc post update: ${doc}`)
+          }
+        })
       });
+      currentPage++
+      scrape()
     } else {
-      console.log(`Error searching Sephora ${err}`)
+      console.log(`Error scraping Sephora ${err}`)
     }
   })
 }
