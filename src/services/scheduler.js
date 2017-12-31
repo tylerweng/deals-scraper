@@ -2,8 +2,8 @@ import { CronJob } from 'cron'
 
 import SephoraScraper from './scrapers/SephoraScraper'
 
-// Run every 5 seconds
-const cronTime = '*/5 * * * * *'
+// Run every 1 seconds
+const cronTime = '*/1 * * * * *'
 // function to run
 const scraper = new SephoraScraper()
 const onTick = () => scraper.execute()
