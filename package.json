@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Web app built using React and Express",
   "main": "index.js",
+  "proxy": "http://localhost:8081",
   "scripts": {
     "server": "nodemon index.js",
     "build": "webpack -w",
