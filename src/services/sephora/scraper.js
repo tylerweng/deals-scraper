@@ -1,6 +1,8 @@
 import request from 'request'
 import cheerio from 'cheerio'
 
+import Model from './model'
+
 const url = "https://www.sephora.com/search/saleResults.jsp?keyword=Sale&sale=true&pageSize=-1&currentPage="
 
 const scrape = () => {
@@ -13,10 +15,8 @@ const scrape = () => {
       const searchResult = JSON.parse($("script[id=searchResult]").html())
       // console.log(searchResult)
       const products = searchResult["products"]
-      let totalCount = 0
-      let partialCount = 0
+      const timestamp = Date.now()
       products.forEach(product => {
-        totalCount++
         if (!product["derived_sku"] || !product["derived_sku"]["sale_price"]) {
           return
         }
@@ -24,18 +24,19 @@ const scrape = () => {
         const brand_name = product["brand_name"]
         const product_url = product["product_url"]
         const image_url = product["hero_image"]
-        const sale_price = product["derived_sku"]["sale_price"]
-        const list_price = product["derived_sku"]["list_price"]
-        console.log(`product_name: ${product_name}`)
-        partialCount++
+        const sale_price = Number(product["derived_sku"]["sale_price"])
+        const list_price = Number(product["derived_sku"]["list_price"])
+        const model = new Model({
+          product_name: product_name,
+          brand_name: brand_name,
+          product_url: product_url,
+          image_url: image_url,
+          sale_price: sale_price,
+          list_price: list_price,
+          timestamp: timestamp
+        })
+        model.save()
       });
-      console.log(`totalCount: ${totalCount}`)
-      console.log(`partialCount: ${partialCount}`)
-      // console.log(products)
-      // product_url is the url to product page e.g. 
-      // product_url: '/product/beauty-amplifier-set-refresh-spray-P407323'
-      // sephora.com/product_url leads to that
-      // 
     } else {
       console.log(`Error searching Sephora ${err}`)
     }
