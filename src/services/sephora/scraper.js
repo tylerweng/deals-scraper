@@ -8,6 +8,8 @@ const url = "https://www.sephora.com/search/saleResults.jsp?keyword=Sale&sale=tr
 let currentPage = 1
 let count = 0
 
+const parseName = name => name.toLowerCase().split(' ').join('_')
+
 const scrape = () => {
   console.log('SephoraScraper onTick')
   request(url + currentPage, (err, res, html) => {
@@ -26,8 +28,8 @@ const scrape = () => {
           continue
         }
         count++
-        const product_name = product["display_name"]
-        const brand_name = product["brand_name"]
+        const product_name = parseName(product["display_name"])
+        const brand_name = parseName(product["brand_name"])
         const product_url = product["product_url"]
         const image_url = product["hero_image"]
         const sale_price = Number(product["derived_sku"]["sale_price"])
