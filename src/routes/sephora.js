@@ -1,13 +1,12 @@
 import { Router } from 'express'
 
-import model from '../services/sephora/model'
+import controller from '../services/sephora/controller'
 
 const router = Router()
 
 router.get('/', (req, res) => {
-  model.find({}).lean().exec((err, doc) => {
-    res.json(doc)
-  })
+  controller.index(req, res)
 })
+
 
 export default router
