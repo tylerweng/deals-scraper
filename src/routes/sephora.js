@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
   controller.index(req, res)
 })
 
+router.get('/:brand_name', (req, res) => {
+  controller.findAllByBrandName(req, res)
+})
+
 router.get('/:brand_name/:product_name', (req, res) => {
   controller.findByBrandNameAndProductName(req, res)
 })

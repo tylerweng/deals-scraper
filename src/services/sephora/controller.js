@@ -6,6 +6,15 @@ const controller = {
       res.json(doc)
     })
   },
+  findAllByBrandName: (req, res) => {
+    model.find(
+      {
+        brand_name: req.params.brand_name
+      }
+    ).lean().exec((err, doc) => {
+      res.json(doc)
+    })
+  },
   findByBrandNameAndProductName: (req, res) => {
     model.findOne(
       {
