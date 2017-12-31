@@ -20,9 +20,10 @@ const scrape = () => {
         return
       }
       const timestamp = Date.now()
-      products.forEach(product => {
+      for (let i = 0; i < products.length; i++) {
+        let product = products[i]
         if (!product["derived_sku"] || !product["derived_sku"]["sale_price"]) {
-          return
+          continue
         }
         count++
         const product_name = product["display_name"]
@@ -58,7 +59,7 @@ const scrape = () => {
             console.log(`doc post update: ${doc}`)
           }
         })
-      });
+      }
       currentPage++
       scrape()
     } else {
