@@ -14,11 +14,11 @@ const setServer = function(callback) {
   // Application-level environment vars
   server.set('env', process.env.NODE_ENV || 'development')
   server.set('host', process.env.HOST || '0.0.0.0')
-  server.set('port', process.env.PORT || 3001)
+  server.set('port', process.env.PORT || 8081)
 
   // Application-level middleware
   // Backend routes
-  server.use('/', routes)
+  server.use('/api', routes)
   server.use(serveFavicon(`${staticPath}/assets/favicon.ico`))
   server.use((err, req, res, next) => {
     console.log('Error on request %s %s', req.method, req.url)

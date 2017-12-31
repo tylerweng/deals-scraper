@@ -7,7 +7,7 @@ class Header extends React.Component {
     }
     render() {
         return (
-            <div>Search Bar</div>
+            <div>Search BarX</div>
 
         )
     }
