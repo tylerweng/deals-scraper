@@ -13,7 +13,11 @@ const controller = {
         brand_name: req.params.brand_name
       }
     ).lean().exec((err, doc) => {
-      res.json(doc)
+      if (doc.length === 0) {
+        res.status(404).send(errors[404])
+      } else {
+        res.json(doc)
+      }
     })
   },
   findByBrandNameAndProductName: (req, res) => {
