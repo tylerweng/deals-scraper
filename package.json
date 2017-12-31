@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "build": "webpack -w",
-    "webpack": "webpack-dev-server --open"
+    "server": "webpack-dev-server --open"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",

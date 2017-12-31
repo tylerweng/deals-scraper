@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom'
-import Cat from './components/cat'
+import Header from './components/header'
 
 class App extends React.Component{
     constructor(props){
@@ -11,8 +11,8 @@ class App extends React.Component{
         return (
             <BrowserRouter> 
             <div>
-                Meow
-                <Route path="/cat" component={Cat}/>
+
+                <Header/>
             </div>
            </BrowserRouter>
         )
