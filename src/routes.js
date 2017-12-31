@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
-import birds from './routes/birds'
+import sephora from './routes/sephora'
 
 const router = Router()
 
-router.use('/birds', birds)
+router.use('/sephora', sephora)
 
 export default router
