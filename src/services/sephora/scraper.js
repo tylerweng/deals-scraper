@@ -44,7 +44,8 @@ const scrape = () => {
 
         // Check if doc exists
         Model.findOne({
-          "product_name": product_name
+          "product_name": product_name,
+          "brand_name": brand_name
         }, (err, doc) => {
           // If no doc with product_name exists, save it
           if (doc == null) {
