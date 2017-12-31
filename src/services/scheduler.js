@@ -1,12 +1,11 @@
 import { CronJob } from 'cron'
 
-import SephoraScraper from './scrapers/SephoraScraper'
+import sephoraScraper from './sephora/scraper'
 
 // Run every 1 seconds
 const cronTime = '*/1 * * * * *'
 // function to run
-const scraper = new SephoraScraper()
-const onTick = () => scraper.execute()
+const onTick = () => sephoraScraper()
 // start job now
 const start = true
 // timezone
